@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class moveinput : MonoBehaviour
 {
+    public Animator animator; 
     float HorizontalSpeed = 0.01f;
    // float VerticalSpeed = 0.01f;
     // Start is called before the first frame update
@@ -15,11 +16,21 @@ public class moveinput : MonoBehaviour
     void Update()
     {
         float h = HorizontalSpeed * Input.GetAxis("Horizontal");
+        animator.SetFloat("Speed", Mathf.Abs(h));
       //  float v = VerticalSpeed * Input.GetAxis("Vertical");
         transform.Translate(h, 0, 0);
         // transform.Translate(0, v, 0);
-        Vector2 scaleChange = new Vector2(-1.0f, 1.0f);
-        transform.localScale *= scaleChange;
+        if (Input.GetKey("left"))
+        {
+
+            Vector2 scaleChange = new Vector2(-5, 5);
+            transform.localScale = scaleChange;
+        }
+        else if (Input.GetKey("right"))
+        {
+            Vector2 scaleChange = new Vector2(5, 5);
+            transform.localScale = scaleChange;
+        }
     }
    // void flip()
   //  {
