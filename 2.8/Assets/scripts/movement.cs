@@ -66,11 +66,6 @@ public class movement : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Acorn")
-        {
-            Debug.Log("NOM NOM NOM");
-
-        }
         if (collision.gameObject.tag == "MainCamera")
         {
             if (health > 1)
