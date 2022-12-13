@@ -8,8 +8,11 @@ public class EnemySlime : MonoBehaviour
     public int moveSpeed;
     public int rotationSpeed;
     public int health = 30;
-
+    public Rigidbody2D SRB2D;
     private Transform myTransform;
+    public float S_Thrust = 600.0f;
+    public static int slime = 2;
+    public int time = 3;
 
     // Use this for initialization
     void Awake()
@@ -17,11 +20,14 @@ public class EnemySlime : MonoBehaviour
         myTransform = transform;
     }
 
+ 
     void Start()
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
-
         target = go.transform;
+        SRB2D = GetComponent<Rigidbody2D>();
+        StartCoroutine(Bounce());
+
     }
 
     // Update is called once per frame
@@ -29,6 +35,7 @@ public class EnemySlime : MonoBehaviour
     {
         Vector3 dir = target.position - myTransform.position;
         dir.z = 0.0f; // Only needed if objects don't share 'z' value
+
         if (dir != Vector3.zero)
         {
             myTransform.rotation = Quaternion.Slerp(myTransform.rotation,
@@ -40,6 +47,8 @@ public class EnemySlime : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            slime -= 1;
+            Debug.Log(slime);
         }
 
     }
@@ -49,6 +58,17 @@ public class EnemySlime : MonoBehaviour
         {
             health = health - 10;
         }
+    }
+    IEnumerator Bounce()
+    {
+        while (true)
+        { 
+            Debug.Log("bounce");
+            SRB2D.AddForce(transform.up * S_Thrust);
+            yield return new WaitForSeconds(time);
+            Debug.Log("Bounce Done");
+        }
+
     }
 }
 

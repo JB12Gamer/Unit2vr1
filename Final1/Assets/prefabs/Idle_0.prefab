@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7601250072100219006}
   - component: {fileID: 7601250072100219007}
   - component: {fileID: 7601250072100219004}
+  - component: {fileID: 1567650821210586151}
   - component: {fileID: 7601250072100219005}
   - component: {fileID: 7601250072100219000}
   - component: {fileID: 1364207991779217548}
@@ -129,6 +130,21 @@ PolygonCollider2D:
       - {x: 0.063474, y: 0.010942284}
       - {x: 0.11531812, y: 0.04402822}
       - {x: 0.068639666, y: 0.15134273}
+--- !u!114 &1567650821210586151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7601250072100219266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a3e54c8994c18449130bbf0346b63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heallth: 
+  fontss: 90
+  font2: 20
 --- !u!50 &7601250072100219005
 Rigidbody2D:
   serializedVersion: 4

@@ -11,10 +11,12 @@ public class HMove : MonoBehaviour
     public Rigidbody2D m_Rigidbody;
     public float h;
     public static int health;
+    public static bool player;
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
         health = 100;
+        player = true;
     }
     void Update()
     {
@@ -63,7 +65,11 @@ public class HMove : MonoBehaviour
         {
             attack();
         }
-
+        if (health < 1)
+        {
+            animator.SetBool("Death", true);
+            StartCoroutine(Death());
+        }
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -81,11 +87,23 @@ public class HMove : MonoBehaviour
             health -= 10;
             Debug.Log("Ouch");
         }
+        if (collision.gameObject.tag == "TestSkull")
+        {
+            health -= 100;
+            Debug.Log("skull");
+        }
     }
     void attack()
     {
         animator.SetTrigger("Attack");
 
     }
-
+    IEnumerator Death()
+    {
+        Debug.Log("Died");
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
+        player = false;
+        SceneManager.LoadScene("EndScreen", LoadSceneMode.Single);
+    }
 }
