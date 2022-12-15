@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySlime : MonoBehaviour
+public class EnemySlimeTwo : MonoBehaviour
 {
     public Transform target;
     public int moveSpeed;
@@ -11,7 +11,6 @@ public class EnemySlime : MonoBehaviour
     public Rigidbody2D SRB2D;
     private Transform myTransform;
     public float S_Thrust = 600.0f;
-    public static int slime = 2;
     public int time = 3;
 
     // Use this for initialization
@@ -20,7 +19,7 @@ public class EnemySlime : MonoBehaviour
         myTransform = transform;
     }
 
- 
+
     void Start()
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
@@ -47,8 +46,8 @@ public class EnemySlime : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            slime -= 1;
-            Debug.Log(slime);
+            EnemySlime.slime -= 1;
+            Debug.Log(EnemySlime.slime);
         }
 
     }
@@ -62,7 +61,7 @@ public class EnemySlime : MonoBehaviour
     IEnumerator Bounce()
     {
         while (true)
-        { 
+        {
             Debug.Log("bounce");
             SRB2D.AddForce(transform.up * S_Thrust);
             yield return new WaitForSeconds(time);

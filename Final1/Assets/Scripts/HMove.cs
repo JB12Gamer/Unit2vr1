@@ -17,6 +17,7 @@ public class HMove : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody2D>();
         health = 100;
         player = true;
+        animator.SetBool("Hit", false);
     }
     void Update()
     {
@@ -86,6 +87,7 @@ public class HMove : MonoBehaviour
         {
             health -= 10;
             Debug.Log("Ouch");
+            StartCoroutine(hurt());
         }
         if (collision.gameObject.tag == "TestSkull")
         {
@@ -105,5 +107,12 @@ public class HMove : MonoBehaviour
         Destroy(gameObject);
         player = false;
         SceneManager.LoadScene("EndScreen", LoadSceneMode.Single);
+    }
+    IEnumerator hurt()
+    {
+        animator.SetBool("Hit", true);
+        yield return new WaitForSeconds(1);
+        animator.SetBool("Hit", false);
+        yield return null;
     }
 }
